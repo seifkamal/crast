@@ -36,7 +36,3 @@ func (ll lists) Has(dir string) (exists bool) {
 	_, exists = ll[dir]
 	return
 }
-
-func (ll *lists) Save(l *List, dir string) {
-	(*ll)[dir] = *l
-}
