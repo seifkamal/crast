@@ -9,13 +9,13 @@ import (
 	"github.com/safe-k/crast"
 )
 
-func viewCommand(locker *crast.Locker, dir string) *cobra.Command {
+func statusCommand(locker *crast.Locker, dir string) *cobra.Command {
 	cmd := &cobra.Command{
-		Use: "view",
+		Use: "status",
 		Run: func(cmd *cobra.Command, args []string) {
 			list, listDir := locker.Lists.Get(dir)
 			if len(*list) == 0 {
-				cmd.Println("No list found for", dir)
+				cmd.Println("List", dir, "is empty")
 				return
 			}
 

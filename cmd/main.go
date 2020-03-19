@@ -22,7 +22,7 @@ func main() {
 	}
 
 	cmd := &cobra.Command{}
-	cmd.AddCommand(viewCommand(locker, dir))
+	cmd.AddCommand(statusCommand(locker, dir))
 	cmd.AddCommand(addCommand(locker, dir))
 	cmd.AddCommand(rmCommand(locker, dir))
 	cmd.AddCommand(doCommand(locker, dir))
