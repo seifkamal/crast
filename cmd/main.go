@@ -14,7 +14,6 @@ func main() {
 	if err != nil {
 		log.Println(err)
 	}
-	dir += "/"
 
 	locker, err := crast.NewLocker()
 	if err != nil {

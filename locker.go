@@ -12,6 +12,10 @@ type Locker struct {
 }
 
 func (l *Locker) Save(list List, dir string) error {
+	if len(l.Lists) == 0 {
+		l.Lists = make(lists)
+	}
+
 	l.Lists[dir] = list
 
 	bytes, err := json.MarshalIndent(l, "", "    ")
@@ -29,19 +33,18 @@ func NewLocker() (*Locker, error) {
 	}
 
 	filePath := exeDir + "-lock.json"
-	_, err = os.Stat(filePath)
-	if os.IsNotExist(err) {
-		ioutil.WriteFile(filePath, []byte("{\"lists\": {}}"), 0644)
-	}
-
-	file, err := ioutil.ReadFile(filePath)
-	if err != nil {
-		return nil, err
-	}
-
 	locker := &Locker{FilePath: filePath}
-	if err := json.Unmarshal([]byte(file), locker); err != nil {
-		return nil, err
+
+	_, err = os.Stat(filePath)
+	if !os.IsNotExist(err) {
+		file, err := ioutil.ReadFile(filePath)
+		if err != nil {
+			return nil, err
+		}
+
+		if err := json.Unmarshal([]byte(file), locker); err != nil {
+			return nil, err
+		}
 	}
 
 	return locker, nil

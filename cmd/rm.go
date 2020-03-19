@@ -13,7 +13,7 @@ func rmCommand(locker *crast.Locker, dir string) *cobra.Command {
 		Use:  "rm",
 		Args: cobra.ExactArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
-			list := locker.Lists.Get(dir)
+			list, listDir := locker.Lists.Get(dir)
 			if list == nil {
 				list = &crast.List{}
 			}
@@ -24,7 +24,7 @@ func rmCommand(locker *crast.Locker, dir string) *cobra.Command {
 			}
 
 			list.Remove(id)
-			locker.Save(*list, dir)
+			locker.Save(*list, listDir)
 		},
 	}
 

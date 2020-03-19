@@ -13,9 +13,9 @@ func viewCommand(locker *crast.Locker, dir string) *cobra.Command {
 	cmd := &cobra.Command{
 		Use: "view",
 		Run: func(cmd *cobra.Command, args []string) {
-			list := locker.Lists.Get(dir)
-			if list == nil {
-				cmd.Printf("List for %s is empty", dir)
+			list, listDir := locker.Lists.Get(dir)
+			if len(*list) == 0 {
+				cmd.Println("No list found for", dir)
 				return
 			}
 
@@ -26,7 +26,7 @@ func viewCommand(locker *crast.Locker, dir string) *cobra.Command {
 				return
 			}
 
-			output := "Dir: " + dir + "\n"
+			output := "Dir: " + listDir + "\n"
 			for id, task := range *list {
 				if topic == "" || task.Topic == topic {
 					state := " "

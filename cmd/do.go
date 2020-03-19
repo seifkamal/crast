@@ -13,7 +13,7 @@ func doCommand(locker *crast.Locker, dir string) *cobra.Command {
 		Use:  "do",
 		Args: cobra.ExactArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
-			list := locker.Lists.Get(dir)
+			list, listDir := locker.Lists.Get(dir)
 			if list == nil {
 				list = &crast.List{}
 			}
@@ -25,7 +25,7 @@ func doCommand(locker *crast.Locker, dir string) *cobra.Command {
 			}
 
 			list.Do(id)
-			locker.Save(*list, dir)
+			locker.Save(*list, listDir)
 		},
 	}
 
