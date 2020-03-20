@@ -16,7 +16,7 @@ func (l *Locker) SaveList(list *List, dir string) error {
 		l.Lists = make(lists)
 	}
 
-	l.Lists[dir] = list
+	l.Lists.Add(dir, list)
 
 	bytes, err := json.MarshalIndent(l, "", "    ")
 	if err != nil {

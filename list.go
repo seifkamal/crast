@@ -18,6 +18,10 @@ func (l *List) Remove(id int) {
 
 type lists map[string]List
 
+func (ll *lists) Add(dir string, list *List) {
+	(*ll)[dir] = *list
+}
+
 // Get retrieves the list associated with the given directory.
 // The search is done recursively over the directory path; If
 // no entry is found, the next (parent) directory is used, and
