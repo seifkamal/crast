@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/spf13/cobra"
+	"github.com/teris-io/shortid"
 
 	"github.com/safe-k/crast"
 )
@@ -27,7 +28,14 @@ func addCommand(locker *crast.Locker, dir string) *cobra.Command {
 			}
 
 			for _, summary := range args {
+				id, err := shortid.Generate()
+				if err != nil {
+					cmd.PrintErrln(err)
+					return
+				}
+
 				list.Add(&crast.Task{
+					ID:       crast.TaskID(id),
 					Topic:    topic,
 					Summary:  summary,
 					Priority: priority,

@@ -16,17 +16,25 @@ func (l *List) Add(t *Task) {
 
 // Do marks any items in the list that correspond to the given IDs
 // as done.
-func (l *List) Do(ids ...int) {
-	sort.Sort(sort.Reverse(sort.IntSlice(ids)))
+func (l *List) Do(ids ...TaskID) {
 	for _, id := range ids {
-		(*l)[id].Do()
+		for i, task := range *l {
+			if task.ID == id {
+				(*l)[i].Do()
+			}
+		}
 	}
 }
 
-// Remove removes an item from the list at the given index number.
-// The list is then reordered.
-func (l *List) Remove(id int) {
-	*l = append((*l)[:id], (*l)[id+1:]...)
+// Remove removes an item from the list with an ID matching the
+// one given.
+func (l *List) Remove(id TaskID) {
+	for i, task := range *l {
+		if task.ID == id {
+			*l = append((*l)[:i], (*l)[i+1:]...)
+			return
+		}
+	}
 }
 
 // ByPriority returns a copy of the list sorted by priority.

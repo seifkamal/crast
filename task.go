@@ -22,14 +22,20 @@ func (p Priority) IsValid() bool {
 	}
 }
 
-// Task is a model of a todo item. It can be marked as
-// done via the `Done` boolean property.
-type Task struct {
-	Topic    string   `json:"topic"`
-	Summary  string   `json:"summary"`
-	Priority Priority `json:"priority"`
-	Done     bool     `json:"done"`
-}
+type (
+	// TaskID is a unique non-sequential short ID that is
+	// is used to identify and process a task.
+	TaskID string
+	// Task is a model of a todo item. It can be marked as
+	// done via the `Done` boolean property.
+	Task struct {
+		ID       TaskID   `json:"id"`
+		Topic    string   `json:"topic"`
+		Summary  string   `json:"summary"`
+		Priority Priority `json:"priority"`
+		Done     bool     `json:"done"`
+	}
+)
 
 // Do marks this Task as done.
 func (t *Task) Do() {

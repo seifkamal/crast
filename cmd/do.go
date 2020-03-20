@@ -1,8 +1,6 @@
 package main
 
 import (
-	"strconv"
-
 	"github.com/spf13/cobra"
 
 	"github.com/safe-k/crast"
@@ -18,15 +16,9 @@ func doCommand(locker *crast.Locker, dir string) *cobra.Command {
 				list = &crast.List{}
 			}
 
-			ids := []int{}
+			ids := []crast.TaskID{}
 			for _, strID := range args {
-				id, err := strconv.Atoi(strID)
-				if err != nil {
-					cmd.PrintErrln(err)
-					return
-				}
-
-				ids = append(ids, id)
+				ids = append(ids, crast.TaskID(strID))
 			}
 
 			list.Do(ids...)

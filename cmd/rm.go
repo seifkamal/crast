@@ -1,8 +1,6 @@
 package main
 
 import (
-	"strconv"
-
 	"github.com/spf13/cobra"
 
 	"github.com/safe-k/crast"
@@ -18,12 +16,7 @@ func rmCommand(locker *crast.Locker, dir string) *cobra.Command {
 				list = &crast.List{}
 			}
 
-			id, err := strconv.Atoi(args[0])
-			if err != nil {
-				cmd.PrintErrln(err)
-			}
-
-			list.Remove(id)
+			list.Remove(crast.TaskID(args[0]))
 			locker.SaveList(list, listDir)
 		},
 	}
