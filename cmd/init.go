@@ -16,7 +16,7 @@ func initCommand(locker *crast.Locker, dir string) *cobra.Command {
 			}
 
 			list := &crast.List{}
-			locker.Save(*list, dir)
+			locker.SaveList(list, dir)
 		},
 	}
 

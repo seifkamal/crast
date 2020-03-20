@@ -24,7 +24,7 @@ func rmCommand(locker *crast.Locker, dir string) *cobra.Command {
 			}
 
 			list.Remove(id)
-			locker.Save(*list, listDir)
+			locker.SaveList(list, listDir)
 		},
 	}
 

@@ -23,7 +23,7 @@ func addCommand(locker *crast.Locker, dir string) *cobra.Command {
 			}
 
 			list.Add(task)
-			locker.Save(*list, listDir)
+			locker.SaveList(list, listDir)
 		},
 	}
 

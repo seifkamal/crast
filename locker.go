@@ -11,7 +11,7 @@ type Locker struct {
 	Lists    lists  `json:"lists"`
 }
 
-func (l *Locker) Save(list List, dir string) error {
+func (l *Locker) SaveList(list *List, dir string) error {
 	if len(l.Lists) == 0 {
 		l.Lists = make(lists)
 	}

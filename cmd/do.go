@@ -25,7 +25,7 @@ func doCommand(locker *crast.Locker, dir string) *cobra.Command {
 			}
 
 			list.Do(id)
-			locker.Save(*list, listDir)
+			locker.SaveList(list, listDir)
 		},
 	}
 
