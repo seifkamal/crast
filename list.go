@@ -1,6 +1,9 @@
 package crast
 
-import "path/filepath"
+import (
+	"path/filepath"
+	"sort"
+)
 
 // List is a slice of Task items. Items can be added and marked as
 // done via a List.
@@ -11,9 +14,13 @@ func (l *List) Add(t *Task) {
 	*l = append(*l, *t)
 }
 
-// Do marks an item in the list as done.
-func (l *List) Do(id int) {
-	(*l)[id].Do()
+// Do marks any items in the list that correspond to the given IDs
+// as done.
+func (l *List) Do(ids ...int) {
+	sort.Sort(sort.Reverse(sort.IntSlice(ids)))
+	for _, id := range ids {
+		(*l)[id].Do()
+	}
 }
 
 // Remove removes an item from the list at the given index number.
