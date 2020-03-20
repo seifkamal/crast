@@ -27,7 +27,7 @@ func statusCommand(locker *crast.Locker, dir string) *cobra.Command {
 			}
 
 			output := "Dir: " + listDir + "\n"
-			for id, task := range *list {
+			for id, task := range list.ByPriority() {
 				if topic == "" || task.Topic == topic {
 					state := " "
 					if task.Done {

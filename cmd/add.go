@@ -14,10 +14,23 @@ func addCommand(locker *crast.Locker, dir string) *cobra.Command {
 			list, listDir := locker.Lists.Get(dir)
 			topic := cmd.Flag("topic").Value.String()
 
+			priorityLevel, err := cmd.Flags().GetInt("priority")
+			if err != nil {
+				cmd.PrintErrln(err)
+				return
+			}
+
+			priority := crast.Priority(priorityLevel)
+			if valid := priority.IsValid(); !valid {
+				cmd.PrintErrln("Invalid priority level")
+				return
+			}
+
 			for _, summary := range args {
 				list.Add(&crast.Task{
-					Topic:   topic,
-					Summary: summary,
+					Topic:    topic,
+					Summary:  summary,
+					Priority: priority,
 				})
 			}
 
@@ -26,6 +39,7 @@ func addCommand(locker *crast.Locker, dir string) *cobra.Command {
 	}
 
 	cmd.Flags().StringP("topic", "t", "general", "A topic to put this task under")
+	cmd.Flags().IntP("priority", "p", 4, "The priority level of this task")
 
 	return cmd
 }

@@ -29,6 +29,15 @@ func (l *List) Remove(id int) {
 	*l = append((*l)[:id], (*l)[id+1:]...)
 }
 
+// ByPriority returns a copy of the list sorted by priority.
+func (l List) ByPriority() List {
+	sort.Slice(l, func(a, b int) bool {
+		return l[a].Priority < l[b].Priority
+	})
+
+	return l
+}
+
 type lists map[string]List
 
 // Add adds an entry to the lists map with the given directory
