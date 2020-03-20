@@ -13,7 +13,7 @@ func (l *List) Add(t *Task) {
 
 // Do marks an item in the list as done.
 func (l *List) Do(id int) {
-	(*l)[id].Done = true
+	(*l)[id].Do()
 }
 
 // Remove removes an item from the list at the given index number.

@@ -7,3 +7,8 @@ type Task struct {
 	Summary string `json:"summary"`
 	Done    bool   `json:"done"`
 }
+
+// Do marks this Task as done.
+func (t *Task) Do() {
+	t.Done = true
+}
