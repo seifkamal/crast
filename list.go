@@ -2,22 +2,30 @@ package crast
 
 import "path/filepath"
 
+// List is a slice of Task items. Items can be added and marked as
+// done via a List.
 type List []Task
 
+// Add appends an item to the list.
 func (l *List) Add(t *Task) {
 	*l = append(*l, *t)
 }
 
+// Do marks an item in the list as done.
 func (l *List) Do(id int) {
 	(*l)[id].Done = true
 }
 
+// Remove removes an item from the list at the given index number.
+// The list is then reordered.
 func (l *List) Remove(id int) {
 	*l = append((*l)[:id], (*l)[id+1:]...)
 }
 
 type lists map[string]List
 
+// Add adds an entry to the lists map with the given directory
+// as the key. If an entry already exists, it will be overwritten.
 func (ll *lists) Add(dir string, list *List) {
 	(*ll)[dir] = *list
 }
@@ -36,6 +44,9 @@ func (ll lists) Get(dir string) (*List, string) {
 	return &list, dir
 }
 
+// Has checks whether the given directory has its own entry
+// in the lists map, and returns a boolean value with the
+// result.
 func (ll lists) Has(dir string) (exists bool) {
 	_, exists = ll[dir]
 	return
