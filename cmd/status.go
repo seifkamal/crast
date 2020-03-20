@@ -1,8 +1,7 @@
 package main
 
 import (
-	"fmt"
-	"strconv"
+	"os"
 
 	"github.com/spf13/cobra"
 
@@ -26,22 +25,9 @@ func statusCommand(locker *crast.Locker, dir string) *cobra.Command {
 				return
 			}
 
-			output := "Dir: " + listDir + "\n"
-			for id, task := range list.ByPriority() {
-				if topic == "" || task.Topic == topic {
-					state := " "
-					if task.Done {
-						if !showDone {
-							continue
-						}
-						state = "X"
-					}
-
-					output += fmt.Sprintf("%v - [%s] (%s) %s\n", strconv.Itoa(id), state, task.Topic, task.Summary)
-				}
-			}
-
-			cmd.Println(output)
+			table := list.Table(os.Stdout, topic, showDone)
+			table.SetCaption(true, "Dir: "+listDir)
+			table.Render()
 		},
 	}
 
