@@ -9,17 +9,18 @@ import (
 func addCommand(locker *crast.Locker, dir string) *cobra.Command {
 	cmd := &cobra.Command{
 		Use:  "add",
-		Args: cobra.ExactArgs(1),
+		Args: cobra.MinimumNArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
 			list, listDir := locker.Lists.Get(dir)
-
 			topic := cmd.Flag("topic").Value.String()
-			task := &crast.Task{
-				Topic:   topic,
-				Summary: args[0],
+
+			for _, summary := range args {
+				list.Add(&crast.Task{
+					Topic:   topic,
+					Summary: summary,
+				})
 			}
 
-			list.Add(task)
 			locker.SaveList(list, listDir)
 		},
 	}
