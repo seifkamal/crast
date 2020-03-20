@@ -12,9 +12,6 @@ func addCommand(locker *crast.Locker, dir string) *cobra.Command {
 		Args: cobra.ExactArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
 			list, listDir := locker.Lists.Get(dir)
-			if list == nil {
-				list = &crast.List{}
-			}
 
 			topic := cmd.Flag("topic").Value.String()
 			task := &crast.Task{
