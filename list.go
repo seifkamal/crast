@@ -25,6 +25,16 @@ func (l List) Get(id TaskID) *Task {
 	return nil
 }
 
+// Update replaces an existing task with the given one, provided
+// they both have the same ID.
+func (l *List) Update(updatedTask *Task) {
+	for i, task := range *l {
+		if task.ID == updatedTask.ID {
+			(*l)[i] = *updatedTask
+		}
+	}
+}
+
 // Do marks any items in the list that correspond to the given IDs
 // as done.
 func (l *List) Do(ids ...TaskID) {
