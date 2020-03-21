@@ -28,6 +28,7 @@ func main() {
 	cmd.AddCommand(rmCommand(locker, dir))
 	cmd.AddCommand(doCommand(locker, dir))
 	cmd.AddCommand(undoCommand(locker, dir))
+	cmd.AddCommand(clearCommand(locker, dir))
 
 	if err := cmd.Execute(); err != nil {
 		log.Println(err)

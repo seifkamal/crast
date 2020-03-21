@@ -49,6 +49,11 @@ func (l *List) Remove(id TaskID) {
 	}
 }
 
+// Clear removes all items from the list.
+func (l *List) Clear() {
+	*l = []Task{}
+}
+
 // ByPriority returns a copy of the list sorted by priority.
 func (l List) ByPriority() List {
 	sort.Slice(l, func(a, b int) bool {
