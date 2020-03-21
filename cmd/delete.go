@@ -8,7 +8,8 @@ import (
 
 func deleteCommand(locker *crast.Locker, dir string) *cobra.Command {
 	cmd := &cobra.Command{
-		Use: "delete",
+		Use:  "delete",
+		Args: cobra.ExactArgs(0),
 		Run: func(cmd *cobra.Command, args []string) {
 			_, listDir := locker.Lists.Get(dir)
 			locker.RemoveList(listDir)

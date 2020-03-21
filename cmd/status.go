@@ -10,7 +10,8 @@ import (
 
 func statusCommand(locker *crast.Locker, dir string) *cobra.Command {
 	cmd := &cobra.Command{
-		Use: "status",
+		Use:  "status",
+		Args: cobra.ExactArgs(0),
 		Run: func(cmd *cobra.Command, args []string) {
 			list, listDir := locker.Lists.Get(dir)
 			if len(*list) == 0 {
