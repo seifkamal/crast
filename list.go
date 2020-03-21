@@ -92,3 +92,9 @@ func (ll lists) Has(dir string) (exists bool) {
 	_, exists = ll[dir]
 	return
 }
+
+// Remove removes a list matching the given directory from
+// the list map.
+func (ll *lists) Remove(dir string) {
+	delete(*ll, dir)
+}

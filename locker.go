@@ -16,7 +16,7 @@ type Locker struct {
 	Lists    lists  `json:"lists"`
 }
 
-// SaveList adds the given list to the lists map and writes
+// SaveList adds the given list to the list map and writes
 // the Locker's content to the associated lock file.
 func (l *Locker) SaveList(list *List, dir string) error {
 	if len(l.Lists) == 0 {
@@ -25,6 +25,17 @@ func (l *Locker) SaveList(list *List, dir string) error {
 
 	l.Lists.Add(dir, list)
 
+	return l.save()
+}
+
+// RemoveList removes a list that matches the given directory
+// from the list map.
+func (l *Locker) RemoveList(dir string) error {
+	l.Lists.Remove(dir)
+	return l.save()
+}
+
+func (l *Locker) save() error {
 	bytes, err := json.MarshalIndent(l, "", "    ")
 	if err != nil {
 		return err
