@@ -9,8 +9,12 @@ import (
 
 func moveCommand(locker *crast.Locker, dir string) *cobra.Command {
 	cmd := &cobra.Command{
-		Use:  "move",
-		Args: cobra.MinimumNArgs(1),
+		Use:     "move [taskId...]",
+		Short:   "Moves task(s) to a different list",
+		Long:    "Moves one or more tasks to a different directory list. The target list selection will be collected via an interactive prompt",
+		Example: "crast move GeRW8krZgz G6RZUkrZgm",
+		Version: "1.0.0",
+		Args:    cobra.MinimumNArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
 			dirs := []string{}
 			for _, d := range locker.Dirs() {

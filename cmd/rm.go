@@ -8,8 +8,12 @@ import (
 
 func rmCommand(locker *crast.Locker, dir string) *cobra.Command {
 	cmd := &cobra.Command{
-		Use:  "rm",
-		Args: cobra.ExactArgs(1),
+		Use:     "rm [taskId...]",
+		Short:   "Removes task(s)",
+		Long:    "Removes one or more tasks from the current directory list",
+		Example: "crast rm GeRW8krZgz G6RZUkrZgm",
+		Version: "1.0.0",
+		Args:    cobra.ExactArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
 			list, listDir := locker.Lists.Get(dir)
 			if list == nil {

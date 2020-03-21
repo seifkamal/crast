@@ -8,8 +8,12 @@ import (
 
 func doCommand(locker *crast.Locker, dir string) *cobra.Command {
 	cmd := &cobra.Command{
-		Use:  "do",
-		Args: cobra.MinimumNArgs(1),
+		Use:     "do [taskId]",
+		Short:   "Marks task(s) as done",
+		Long:    "Marks one or more tasks in the current directory list as done",
+		Example: "crast do GeRW8krZgz G6RZUkrZgm",
+		Version: "1.0.0",
+		Args:    cobra.MinimumNArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
 			list, listDir := locker.Lists.Get(dir)
 			if list == nil {

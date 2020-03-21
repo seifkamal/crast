@@ -9,8 +9,12 @@ import (
 
 func deleteCommand(locker *crast.Locker, dir string) *cobra.Command {
 	cmd := &cobra.Command{
-		Use:  "delete",
-		Args: cobra.ExactArgs(0),
+		Use:     "delete",
+		Short:   "Deletes the list",
+		Long:    "Deletes the current directory list. Crast will then fallback to the parent list.",
+		Example: "crast delete",
+		Version: "1.0.0",
+		Args:    cobra.ExactArgs(0),
 		Run: func(cmd *cobra.Command, args []string) {
 			_, listDir := locker.Lists.Get(dir)
 			prompt := promptui.Prompt{

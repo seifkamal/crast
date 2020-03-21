@@ -9,8 +9,12 @@ import (
 
 func clearCommand(locker *crast.Locker, dir string) *cobra.Command {
 	cmd := &cobra.Command{
-		Use:  "clear",
-		Args: cobra.ExactArgs(0),
+		Use:     "clear",
+		Short:   "Removes all tasks from the list",
+		Long:    "Removes all tasks from the current directory list",
+		Example: "crast clear",
+		Version: "1.0.0",
+		Args:    cobra.ExactArgs(0),
 		Run: func(cmd *cobra.Command, args []string) {
 			list, listDir := locker.Lists.Get(dir)
 			prompt := promptui.Prompt{

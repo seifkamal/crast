@@ -9,8 +9,12 @@ import (
 
 func addCommand(locker *crast.Locker, dir string) *cobra.Command {
 	cmd := &cobra.Command{
-		Use:  "add",
-		Args: cobra.MinimumNArgs(1),
+		Use:     "add [summary...]",
+		Short:   "Adds task(s)",
+		Long:    "Adds one or more tasks to the current directory list",
+		Example: "crast add \"do the thing\" \"do the other thing\" -p 3 -t my-project",
+		Version: "1.0.0",
+		Args:    cobra.MinimumNArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
 			list, listDir := locker.Lists.Get(dir)
 			topic := cmd.Flag("topic").Value.String()

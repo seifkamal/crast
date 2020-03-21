@@ -8,8 +8,12 @@ import (
 
 func editCommand(locker *crast.Locker, dir string) *cobra.Command {
 	cmd := &cobra.Command{
-		Use:  "edit",
-		Args: cobra.MinimumNArgs(1),
+		Use:     "edit [taskId...]",
+		Short:   "Edits existing task(s)",
+		Long:    "Edits one or more existing tasks in the current directory list. Task summaries can only be edited for one task at a time",
+		Example: "crast edit VvvggirWR G6RZUkrZgm -p 3 -t my-project",
+		Version: "1.0.0",
+		Args:    cobra.MinimumNArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
 			list, listDir := locker.Lists.Get(dir)
 
