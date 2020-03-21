@@ -44,6 +44,17 @@ func (l *Locker) save() error {
 	return ioutil.WriteFile(l.FilePath, bytes, 0644)
 }
 
+// Dirs returns a slice of directory paths that are associated
+// with existing lists.
+func (l Locker) Dirs() []string {
+	dirs := []string{}
+	for dir := range l.Lists {
+		dirs = append(dirs, dir)
+	}
+
+	return dirs
+}
+
 // NewLocker returns a Locker associated with the running
 // executable. For example, if the executable lives in
 // `/usr/bin/crast`, the lock file will be created next

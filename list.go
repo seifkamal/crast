@@ -14,6 +14,17 @@ func (l *List) Add(t *Task) {
 	*l = append(*l, *t)
 }
 
+// Get retrieves a Task item that corresponds to the given ID.
+func (l List) Get(id TaskID) *Task {
+	for _, task := range l {
+		if task.ID == id {
+			return &task
+		}
+	}
+
+	return nil
+}
+
 // Do marks any items in the list that correspond to the given IDs
 // as done.
 func (l *List) Do(ids ...TaskID) {
