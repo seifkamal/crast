@@ -26,6 +26,18 @@ func (l *List) Do(ids ...TaskID) {
 	}
 }
 
+// Undo resets the Done flag on any items in the list that
+// correspond to the given IDs.
+func (l *List) Undo(ids ...TaskID) {
+	for _, id := range ids {
+		for i, task := range *l {
+			if task.ID == id {
+				(*l)[i].Undo()
+			}
+		}
+	}
+}
+
 // Remove removes an item from the list with an ID matching the
 // one given.
 func (l *List) Remove(id TaskID) {

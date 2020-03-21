@@ -41,3 +41,8 @@ type (
 func (t *Task) Do() {
 	t.Done = true
 }
+
+// Undo resets the Done flag on this task.
+func (t *Task) Undo() {
+	t.Done = false
+}
