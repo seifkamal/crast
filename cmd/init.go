@@ -18,6 +18,8 @@ func initCommand(locker *crast.Locker, dir string) *cobra.Command {
 
 			list := &crast.List{}
 			locker.SaveList(list, dir)
+
+			cmd.Println("New list initialised under", dir)
 		},
 	}
 
