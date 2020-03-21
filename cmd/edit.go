@@ -6,7 +6,7 @@ import (
 	"github.com/safe-k/crast"
 )
 
-func editCommand(locker *crast.Locker, dir string) *cobra.Command {
+func init() {
 	cmd := &cobra.Command{
 		Use:     "edit [taskId...]",
 		Short:   "Edits existing task(s)",
@@ -65,5 +65,5 @@ func editCommand(locker *crast.Locker, dir string) *cobra.Command {
 	cmd.Flags().StringP("topic", "t", "general", "A topic to put this task under")
 	cmd.Flags().IntP("priority", "p", 4, "The priority level of this task")
 
-	return cmd
+	mainCmd.AddCommand(cmd)
 }

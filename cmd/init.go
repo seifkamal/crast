@@ -6,7 +6,7 @@ import (
 	"github.com/safe-k/crast"
 )
 
-func initCommand(locker *crast.Locker, dir string) *cobra.Command {
+func init() {
 	cmd := &cobra.Command{
 		Use:     "init",
 		Short:   "Initialises a list",
@@ -27,5 +27,5 @@ func initCommand(locker *crast.Locker, dir string) *cobra.Command {
 		},
 	}
 
-	return cmd
+	mainCmd.AddCommand(cmd)
 }

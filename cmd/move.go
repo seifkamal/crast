@@ -7,7 +7,7 @@ import (
 	"github.com/safe-k/crast"
 )
 
-func moveCommand(locker *crast.Locker, dir string) *cobra.Command {
+func init() {
 	cmd := &cobra.Command{
 		Use:     "move [taskId...]",
 		Short:   "Moves task(s) to a different list",
@@ -50,5 +50,5 @@ func moveCommand(locker *crast.Locker, dir string) *cobra.Command {
 		},
 	}
 
-	return cmd
+	mainCmd.AddCommand(cmd)
 }

@@ -4,11 +4,9 @@ import (
 	"os"
 
 	"github.com/spf13/cobra"
-
-	"github.com/safe-k/crast"
 )
 
-func statusCommand(locker *crast.Locker, dir string) *cobra.Command {
+func init() {
 	cmd := &cobra.Command{
 		Use:     "status",
 		Short:   "Prints the current list status",
@@ -39,5 +37,5 @@ func statusCommand(locker *crast.Locker, dir string) *cobra.Command {
 	cmd.Flags().StringP("topic", "t", "", "Filter tasks by topic")
 	cmd.Flags().BoolP("all", "a", false, "Show all tasks (including ones marked as done)")
 
-	return cmd
+	mainCmd.AddCommand(cmd)
 }

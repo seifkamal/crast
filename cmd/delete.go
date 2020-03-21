@@ -3,11 +3,9 @@ package main
 import (
 	"github.com/manifoldco/promptui"
 	"github.com/spf13/cobra"
-
-	"github.com/safe-k/crast"
 )
 
-func deleteCommand(locker *crast.Locker, dir string) *cobra.Command {
+func init() {
 	cmd := &cobra.Command{
 		Use:     "delete",
 		Short:   "Deletes the list",
@@ -32,5 +30,5 @@ func deleteCommand(locker *crast.Locker, dir string) *cobra.Command {
 		},
 	}
 
-	return cmd
+	mainCmd.AddCommand(cmd)
 }

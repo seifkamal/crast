@@ -6,7 +6,7 @@ import (
 	"github.com/safe-k/crast"
 )
 
-func undoCommand(locker *crast.Locker, dir string) *cobra.Command {
+func init() {
 	cmd := &cobra.Command{
 		Use:     "undo [taskId...]",
 		Short:   "Marks task(s) as todo",
@@ -29,5 +29,5 @@ func undoCommand(locker *crast.Locker, dir string) *cobra.Command {
 		},
 	}
 
-	return cmd
+	mainCmd.AddCommand(cmd)
 }

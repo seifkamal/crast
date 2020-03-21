@@ -6,7 +6,7 @@ import (
 	"github.com/safe-k/crast"
 )
 
-func rmCommand(locker *crast.Locker, dir string) *cobra.Command {
+func init() {
 	cmd := &cobra.Command{
 		Use:     "rm [taskId...]",
 		Short:   "Removes task(s)",
@@ -25,5 +25,5 @@ func rmCommand(locker *crast.Locker, dir string) *cobra.Command {
 		},
 	}
 
-	return cmd
+	mainCmd.AddCommand(cmd)
 }

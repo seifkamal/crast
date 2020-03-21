@@ -3,11 +3,9 @@ package main
 import (
 	"github.com/manifoldco/promptui"
 	"github.com/spf13/cobra"
-
-	"github.com/safe-k/crast"
 )
 
-func clearCommand(locker *crast.Locker, dir string) *cobra.Command {
+func init() {
 	cmd := &cobra.Command{
 		Use:     "clear",
 		Short:   "Removes all tasks from the list",
@@ -33,5 +31,5 @@ func clearCommand(locker *crast.Locker, dir string) *cobra.Command {
 		},
 	}
 
-	return cmd
+	mainCmd.AddCommand(cmd)
 }

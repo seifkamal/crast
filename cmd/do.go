@@ -6,7 +6,7 @@ import (
 	"github.com/safe-k/crast"
 )
 
-func doCommand(locker *crast.Locker, dir string) *cobra.Command {
+func init() {
 	cmd := &cobra.Command{
 		Use:     "do [taskId]",
 		Short:   "Marks task(s) as done",
@@ -30,5 +30,5 @@ func doCommand(locker *crast.Locker, dir string) *cobra.Command {
 		},
 	}
 
-	return cmd
+	mainCmd.AddCommand(cmd)
 }
