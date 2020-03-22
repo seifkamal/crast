@@ -14,7 +14,9 @@ var (
 	locker *crast.Locker
 
 	mainCmd = &cobra.Command{
-		Use: "crast [command]",
+		Use:     "crast [command]",
+		Short:   "A command line, directory based, flexible todo list app",
+		Version: "1.0.0",
 	}
 )
 
