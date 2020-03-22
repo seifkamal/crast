@@ -2,6 +2,15 @@
 
 A command line, directory based, flexible todo list app.
 
+## Installation
+
+### Homebrew
+
+```shell script
+brew tap safe-k/tap
+brew install crast
+```
+
 ## Usage
 
 ```shell script
