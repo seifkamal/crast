@@ -1,4 +1,4 @@
-module github.com/safe-k/crast
+module github.com/seifkamal/crast
 
 go 1.14
 

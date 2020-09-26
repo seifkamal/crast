@@ -7,7 +7,7 @@ A command line, directory based, flexible todo list app.
 ### Homebrew
 
 ```shell script
-brew tap safe-k/tap
+brew tap seifkamal/tap
 brew install crast
 ```
 

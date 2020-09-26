@@ -4,7 +4,7 @@ import (
 	"github.com/manifoldco/promptui"
 	"github.com/spf13/cobra"
 
-	"github.com/safe-k/crast"
+	"github.com/seifkamal/crast"
 )
 
 func init() {

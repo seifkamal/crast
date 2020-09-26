@@ -3,7 +3,7 @@ package main
 import (
 	"github.com/spf13/cobra"
 
-	"github.com/safe-k/crast"
+	"github.com/seifkamal/crast"
 )
 
 func init() {
